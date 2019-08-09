@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/GradientGenerator/static/css/main.17b84bab.chunk.css",
+    "main.js": "/GradientGenerator/static/js/main.ee8985d9.chunk.js",
+    "main.js.map": "/GradientGenerator/static/js/main.ee8985d9.chunk.js.map",
+    "runtime~main.js": "/GradientGenerator/static/js/runtime~main.4dc0928c.js",
+    "runtime~main.js.map": "/GradientGenerator/static/js/runtime~main.4dc0928c.js.map",
+    "static/js/2.1226d55a.chunk.js": "/GradientGenerator/static/js/2.1226d55a.chunk.js",
+    "static/js/2.1226d55a.chunk.js.map": "/GradientGenerator/static/js/2.1226d55a.chunk.js.map",
+    "index.html": "/GradientGenerator/index.html",
+    "precache-manifest.153ec440e5b3764331227d7f4510b53d.js": "/GradientGenerator/precache-manifest.153ec440e5b3764331227d7f4510b53d.js",
+    "service-worker.js": "/GradientGenerator/service-worker.js",
+    "static/css/main.17b84bab.chunk.css.map": "/GradientGenerator/static/css/main.17b84bab.chunk.css.map"
+  }
+}
