@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from "react"
-import styles from "./SVColorDisplay.module.css"
-import { hsvToRgb } from "../../utils/colors"
+import React, { useState, useEffect, useRef } from 'react'
+import styles from './SVColorDisplay.module.css'
+import { hsvToRgb } from '../../utils/colors'
+import overlay from './sv_overlay.png'
 
 function SVColorDisplay({ color, onSVChange }) {
     const [state, setState] = useState({
@@ -39,12 +40,12 @@ function SVColorDisplay({ color, onSVChange }) {
             setState(ps => ({ ...ps, canMove: false }))
         }
 
-        window.addEventListener("mousemove", onMouseMove)
-        window.addEventListener("mouseup", onMouseUp)
+        window.addEventListener('mousemove', onMouseMove)
+        window.addEventListener('mouseup', onMouseUp)
 
         return () => {
-            window.removeEventListener("mousemove", onMouseMove)
-            window.removeEventListener("mouseup", onMouseUp)
+            window.removeEventListener('mousemove', onMouseMove)
+            window.removeEventListener('mouseup', onMouseUp)
         }
     })
 
@@ -64,17 +65,18 @@ function SVColorDisplay({ color, onSVChange }) {
     const rgb2 = hsvToRgb(color.h, state.cursorValues.s, state.cursorValues.v)
 
     return (
-        <div className={styles["SVColorDisplay__wrapper"]}>
+        <div className={styles['SVColorDisplay__wrapper']}>
             <div
-                className={styles["SVColorDisplay__sb-display"]}
+                className={styles['SVColorDisplay__sb-display']}
                 style={{ background: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})` }}
             />
             <div
-                className={styles["SVColorDisplay__sb-display__overlay"]}
+                className={styles['SVColorDisplay__sb-display__overlay']}
+                style={{ backgroundImage: `url(${overlay})` }}
                 ref={displayRef}
             />
             <div
-                className={styles["SVColorDisplay__cursor"]}
+                className={styles['SVColorDisplay__cursor']}
                 onMouseDown={() => setState(ps => ({ ...ps, canMove: true }))}
                 style={{
                     background: `rgba(${rgb2.r}, ${rgb2.g}, ${rgb2.b}, ${
