@@ -11,7 +11,9 @@
  * @return  Array           The HSV representation
  */
 export function rgbToHsv(r, g, b) {
-    ;(r /= 255), (g /= 255), (b /= 255)
+    r /= 255
+    g /= 255
+    b /= 255
 
     var max = Math.max(r, g, b),
         min = Math.min(r, g, b)
@@ -58,7 +60,9 @@ export function rgbToHsv(r, g, b) {
 export function hsvToRgb(h, s, v) {
     var r, g, b, i, f, p, q, t
     if (arguments.length === 1) {
-        ;(s = h.s), (v = h.v), (h = h.h)
+        s = h.s
+        v = h.v
+        h = h.h
     }
     i = Math.floor(h * 6)
     f = h * 6 - i
@@ -67,22 +71,34 @@ export function hsvToRgb(h, s, v) {
     t = v * (1 - (1 - f) * s)
     switch (i % 6) {
         case 0:
-            ;(r = v), (g = t), (b = p)
+            r = v
+            g = t
+            b = p
             break
         case 1:
-            ;(r = q), (g = v), (b = p)
+            r = q
+            g = v
+            b = p
             break
         case 2:
-            ;(r = p), (g = v), (b = t)
+            r = p
+            g = v
+            b = t
             break
         case 3:
-            ;(r = p), (g = q), (b = v)
+            r = p
+            g = q
+            b = v
             break
         case 4:
-            ;(r = t), (g = p), (b = v)
+            r = t
+            g = p
+            b = v
             break
         case 5:
-            ;(r = v), (g = p), (b = q)
+            r = v
+            g = p
+            b = q
             break
     }
     return {
@@ -110,5 +126,5 @@ export function hexToRgb(hex) {
 }
 
 export function rgbToHex(r, g, b) {
-    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
 }

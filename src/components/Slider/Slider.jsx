@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from 'react'
 
-import styles from "./Slider.module.css"
+import styles from './Slider.module.css'
 
 function Slider({
     cursors = [],
@@ -50,12 +50,12 @@ function Slider({
             setState(ps => ({ ...ps, canSlide: false, activeIndicator: null }))
         }
 
-        window.addEventListener("mousemove", onMouseMove)
-        window.addEventListener("mouseup", onMouseUp)
+        window.addEventListener('mousemove', onMouseMove)
+        window.addEventListener('mouseup', onMouseUp)
 
         return () => {
-            window.removeEventListener("mousemove", onMouseMove)
-            window.removeEventListener("mouseup", onMouseUp)
+            window.removeEventListener('mousemove', onMouseMove)
+            window.removeEventListener('mouseup', onMouseUp)
         }
     })
 
@@ -82,9 +82,9 @@ function Slider({
     ])
 
     return (
-        <div className={styles["Slider__wrapper"]}>
+        <div className={styles['Slider__wrapper']}>
             <div
-                className={styles["Slider__slider"]}
+                className={styles['Slider__slider']}
                 ref={sliderRef}
                 style={css.slider || {}}
                 onDoubleClick={e => {
@@ -96,16 +96,16 @@ function Slider({
             {Object.entries(state.cursors).map(([id, cursor]) => (
                 <div
                     key={id}
-                    className={`${styles["Slider__slider__cursor"]} 
+                    className={`${styles['Slider__slider__cursor']} 
                     ${state.activeIndicator === id &&
-                        styles["Slider__slider__cursor--active"]}`}
+                        styles['Slider__slider__cursor--active']}`}
                     onMouseDown={() => {
                         setState(ps => ({
                             ...ps,
                             canSlide: true,
                             activeIndicator: id
                         }))
-                        onCursor(state.cursors[id])
+                        if (onCursor) onCursor(state.cursors[id])
                     }}
                     style={{
                         left: `${cursor.percent * 100}%`,
