@@ -1,0 +1,32 @@
+.Slider__wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.Slider__slider {
+    width: 100%;
+    background: white;
+    border-radius: 100px;
+    height: 10px;
+}
+
+.Slider__slider__cursor {
+    width: 13px;
+    height: 30px;
+    background: #ccc;
+    border-radius: 32px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    margin-top: -10px;
+    margin-left: -7.5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);
+}
+
+.Slider__slider__cursor--active {
+    border: 2px solid white;
+    z-index: 100;
+}

@@ -1,0 +1,38 @@
+.ColorStopItem__card {
+    color: #222;
+    display: flex;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ececec;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    align-items: center;
+}
+
+.ColorStopItem__card__color {
+    width: 34px;
+    height: 34px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
+.ColorStopItem__card__info {
+    margin: 0px 10px;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.ColorStopItem__card__info > * {
+    margin: 0px 10px;
+}
+
+.ColorStopItem__card__remove {
+    font-size: 30px;
+    font-weight: 100;
+    cursor: pointer;
+    margin-right: 5px;
+}

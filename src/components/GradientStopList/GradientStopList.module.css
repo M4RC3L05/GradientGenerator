@@ -1,0 +1,10 @@
+.GradientStopList__wrapper {
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 260px;
+}
+
+.GradientStopList__wrapper > * {
+    margin-top: 10px;
+}
