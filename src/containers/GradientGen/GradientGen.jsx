@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react"
-import styles from "./GradientGen.module.css"
-import ColorPicker from "../ColorPicker/ColorPicker"
-import Slider from "../../components/Slider/Slider"
+import React from 'react'
+import styles from './GradientGen.module.css'
+import ColorPicker from '../ColorPicker/ColorPicker'
+import Slider from '../../components/Slider/Slider'
 import {
     useGradientState,
     useGradientActions
-} from "../../context/GradientContext/GradientContext"
-import { stateToGradientCSS } from "../../utils/gradient"
-import { hsvToRgb } from "../../utils/colors"
-import GradientStopList from "../../components/GradientStopList/GradientStopList"
+} from '../../context/GradientContext/GradientContext'
+import { stateToGradientCSS } from '../../utils/gradient'
+import { hsvToRgb } from '../../utils/colors'
+import GradientStopList from '../../components/GradientStopList/GradientStopList'
 import {
     addNewGradientStop,
     updateGradientStop,
     setActiveGradientStop,
     removeGradientStop,
     changeGradientType
-} from "../../context/GradientContext/actions"
-import Switch from "../../components/Switch/Switch"
+} from '../../context/GradientContext/actions'
+import Switch from '../../components/Switch/Switch'
 
 function GradientGen() {
     const gradientState = useGradientState()
@@ -57,8 +57,8 @@ function GradientGen() {
     )
 
     return (
-        <div className={styles["GradientGen"]}>
-            <div className={styles["GradientGen__GradientSlider"]}>
+        <div className={styles['GradientGen']}>
+            <div className={styles['GradientGen__GradientSlider']}>
                 <Slider
                     cursors={Object.values(gradientState.gradientStops)}
                     css={{
@@ -88,7 +88,7 @@ function GradientGen() {
                     onIndicatorChange={onUpdateGradientStop}
                 />
             </div>
-            <div className={styles["GradientGen__others"]}>
+            <div className={styles['GradientGen__others']}>
                 <ColorPicker
                     color={
                         gradientState.gradientStops[
@@ -101,13 +101,13 @@ function GradientGen() {
                     stops={gradientState.gradientStops}
                     onRemoveItem={onRemoveGradientStop}
                 />
-                <div className={styles["GradientGen__others__props"]}>
+                <div className={styles['GradientGen__others__props']}>
                     <div
-                        className={styles["GradientGen__others__props__title"]}
+                        className={styles['GradientGen__others__props__title']}
                     >
                         <h2>Linear</h2> <h2>Radial</h2>
                     </div>
-                    <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <Switch
                             onChange={x =>
                                 gradientStateDispatch(changeGradientType(x))

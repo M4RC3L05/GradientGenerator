@@ -1,6 +1,6 @@
-import uuid from "uuid/v4"
-import React from "react"
-import reducer from "./reducer"
+import uuid from 'uuid/v4'
+import React from 'react'
+import reducer from './reducer'
 
 const id1 = uuid()
 const id2 = uuid()
@@ -8,7 +8,7 @@ const id2 = uuid()
 const INIT_STATE = {
     gradient: {
         isLinear: true,
-        direction: "to right",
+        direction: 'to right',
         angle: null
     },
     gradientStops: {
@@ -27,7 +27,7 @@ const INIT_STATE = {
 }
 
 const GradientStateContext = React.createContext(INIT_STATE)
-const GradientActionsContext = React.createContext({})
+const GradientActionsContext = React.createContext(x => {})
 
 export function useGradientState() {
     const context = React.useContext(GradientStateContext)
@@ -47,7 +47,7 @@ export function useGradientActions() {
     return dispatch
 }
 
-export default function GradientProvider({ state, children }) {
+export default function GradientProvider({ state = INIT_STATE, children }) {
     const [gradientState, dispatch] = React.useReducer(
         reducer,
         state || INIT_STATE
