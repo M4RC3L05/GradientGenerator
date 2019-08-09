@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/GradientGenerator/static/css/main.ab613c55.chunk.css",
-    "main.js": "/GradientGenerator/static/js/main.5fa920f6.chunk.js",
-    "main.js.map": "/GradientGenerator/static/js/main.5fa920f6.chunk.js.map",
+    "main.css": "/GradientGenerator/static/css/main.2b3387e8.chunk.css",
+    "main.js": "/GradientGenerator/static/js/main.73c3a9f9.chunk.js",
+    "main.js.map": "/GradientGenerator/static/js/main.73c3a9f9.chunk.js.map",
     "runtime~main.js": "/GradientGenerator/static/js/runtime~main.4dc0928c.js",
     "runtime~main.js.map": "/GradientGenerator/static/js/runtime~main.4dc0928c.js.map",
-    "static/js/2.1226d55a.chunk.js": "/GradientGenerator/static/js/2.1226d55a.chunk.js",
-    "static/js/2.1226d55a.chunk.js.map": "/GradientGenerator/static/js/2.1226d55a.chunk.js.map",
+    "static/js/2.91a49c43.chunk.js": "/GradientGenerator/static/js/2.91a49c43.chunk.js",
+    "static/js/2.91a49c43.chunk.js.map": "/GradientGenerator/static/js/2.91a49c43.chunk.js.map",
     "index.html": "/GradientGenerator/index.html",
-    "precache-manifest.80a737723548b4927ca18983aae5bd37.js": "/GradientGenerator/precache-manifest.80a737723548b4927ca18983aae5bd37.js",
+    "precache-manifest.b50d67307a88e01ac77b175842a7b746.js": "/GradientGenerator/precache-manifest.b50d67307a88e01ac77b175842a7b746.js",
     "service-worker.js": "/GradientGenerator/service-worker.js",
-    "static/css/main.ab613c55.chunk.css.map": "/GradientGenerator/static/css/main.ab613c55.chunk.css.map"
+    "static/css/main.2b3387e8.chunk.css.map": "/GradientGenerator/static/css/main.2b3387e8.chunk.css.map",
+    "static/media/sv_overlay.png": "/GradientGenerator/static/media/sv_overlay.fab1e3c0.png"
   }
 }
