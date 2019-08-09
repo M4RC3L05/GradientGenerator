@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/GradientGenerator/precache-manifest.297078db8cefde414c9d77db49e5c073.js"
+  "/GradientGenerator/precache-manifest.80a737723548b4927ca18983aae5bd37.js"
 );
 
 self.addEventListener('message', (event) => {
