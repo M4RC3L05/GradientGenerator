@@ -17,6 +17,7 @@ import {
     changeGradientType
 } from '../../context/GradientContext/actions'
 import Switch from '../../components/Switch/Switch'
+import CSSRuleDisplay from '../../components/CSSRuleDisplay/CSSRuleDisplay'
 
 function GradientGen() {
     const gradientState = useGradientState()
@@ -115,6 +116,15 @@ function GradientGen() {
                         />
                     </div>
                 </div>
+            </div>
+            <div
+                style={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}
+            >
+                <CSSRuleDisplay rule={stateToGradientCSS(gradientState)} />
             </div>
         </div>
     )

@@ -1,0 +1,12 @@
+.CSSRuleDisplay {
+    background: white;
+    padding: 10px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #ececec;
+}
+
+.CSSRuleDisplay__rule {
+    font-size: 14px;
+}

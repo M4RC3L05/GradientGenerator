@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react"
-import styles from "./Switch.module.css"
+import React, { useState, useEffect } from 'react'
+import styles from './Switch.module.css'
 
-function Switch({ on, onChange }) {
+function Switch({ on = false, onChange }) {
     const [state, setState] = useState({ on: on || false, isFromOutside: true })
 
     useEffect(() => {
@@ -10,13 +10,13 @@ function Switch({ on, onChange }) {
     }, [state.on, onChange, state.isFromOutside])
 
     return (
-        <div className={styles["Switch__wrapper"]}>
-            <div className={styles["Switch__bg"]} />
+        <div className={styles['Switch__wrapper']}>
+            <div className={styles['Switch__bg']} />
             <div
-                className={`${styles["Switch__indicator"]} ${
+                className={`${styles['Switch__indicator']} ${
                     state.on
-                        ? styles["Switch__indicator--on"]
-                        : styles["Switch__indicator--off"]
+                        ? styles['Switch__indicator--on']
+                        : styles['Switch__indicator--off']
                 }`}
                 onClick={() =>
                     setState(ps => ({
