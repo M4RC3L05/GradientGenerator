@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/GradientGenerator/static/css/main.11c73308.chunk.css",
-    "main.js": "/GradientGenerator/static/js/main.3d5a2333.chunk.js",
-    "main.js.map": "/GradientGenerator/static/js/main.3d5a2333.chunk.js.map",
+    "main.js": "/GradientGenerator/static/js/main.3ae66a5c.chunk.js",
+    "main.js.map": "/GradientGenerator/static/js/main.3ae66a5c.chunk.js.map",
     "runtime~main.js": "/GradientGenerator/static/js/runtime~main.377530ee.js",
     "runtime~main.js.map": "/GradientGenerator/static/js/runtime~main.377530ee.js.map",
     "static/js/2.7bf5fac4.chunk.js": "/GradientGenerator/static/js/2.7bf5fac4.chunk.js",
     "static/js/2.7bf5fac4.chunk.js.map": "/GradientGenerator/static/js/2.7bf5fac4.chunk.js.map",
     "index.html": "/GradientGenerator/index.html",
-    "precache-manifest.9fc0e6955b2fb60e87bfabfffa7db07b.js": "/GradientGenerator/precache-manifest.9fc0e6955b2fb60e87bfabfffa7db07b.js",
+    "precache-manifest.9cccde888b3f293bebbe92246ceeb7ed.js": "/GradientGenerator/precache-manifest.9cccde888b3f293bebbe92246ceeb7ed.js",
     "service-worker.js": "/GradientGenerator/service-worker.js",
     "static/css/main.11c73308.chunk.css.map": "/GradientGenerator/static/css/main.11c73308.chunk.css.map",
     "static/media/sv_overlay.png": "/GradientGenerator/static/media/sv_overlay.fab1e3c0.png"

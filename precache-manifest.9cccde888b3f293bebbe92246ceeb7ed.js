@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "14d302337814efb6e296bf72197c71be",
+    "revision": "33cdf304968e0f96a97fcfc9f0c7e46d",
     "url": "/GradientGenerator/index.html"
   },
   {
-    "revision": "173baa3d00ad4bdb9d06",
+    "revision": "e0defa9bdf98f74cc539",
     "url": "/GradientGenerator/static/css/main.11c73308.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/GradientGenerator/static/js/2.7bf5fac4.chunk.js"
   },
   {
-    "revision": "173baa3d00ad4bdb9d06",
-    "url": "/GradientGenerator/static/js/main.3d5a2333.chunk.js"
+    "revision": "e0defa9bdf98f74cc539",
+    "url": "/GradientGenerator/static/js/main.3ae66a5c.chunk.js"
   },
   {
     "revision": "42daa6fc3a300c35825e",
