@@ -19,7 +19,7 @@ const INIT_STATE = {
         },
         [id2]: {
             id: id2,
-            color: { h: 0.4, s: 1, v: 1, a: 1 },
+            color: { h: 0.1, s: 1, v: 1, a: 1 },
             percent: 1
         }
     },
