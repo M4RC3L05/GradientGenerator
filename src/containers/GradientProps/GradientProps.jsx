@@ -1,11 +1,17 @@
 import React from 'react'
-import { useGradientActions } from '../../context/GradientContext/GradientContext'
+import {
+    useGradientActions,
+    useGradientState
+} from '../../context/GradientContext/GradientContext'
 import { changeGradientType } from '../../context/GradientContext/actions'
 import Switch from '../../components/Switch/Switch'
 import styles from './GradientProps.module.css'
+import LinearPropsFormContainer from '../LinearPropsFormContainer/LinearPropsFormContainer'
 
 function GradientProps() {
+    const gradientState = useGradientState()
     const gradientStateDispatch = useGradientActions()
+
     return (
         <div className={styles['GradientProps']}>
             <div className={styles['GradientProps__title']}>
@@ -16,6 +22,13 @@ function GradientProps() {
                     onChange={x => gradientStateDispatch(changeGradientType(x))}
                 />
             </div>
+            {gradientState.gradient.isLinear && (
+                <LinearPropsFormContainer
+                    dispatch={gradientStateDispatch}
+                    direction={gradientState.gradient.direction}
+                    angle={gradientState.gradient.angle}
+                />
+            )}
         </div>
     )
 }

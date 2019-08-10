@@ -1,15 +1,15 @@
-import { hsvToRgb } from "./colors"
+import { hsvToRgb } from './colors'
 
 export function stateToGradientCSS(state, forceLinear = false) {
     const isLinear = forceLinear ? forceLinear : state.gradient.isLinear
-    const isDirectional = !!state.gradient.direction
+    const isDirectional = state.gradient.activeProp === 'direction'
 
-    return `${isLinear ? "linear-gradient" : "radial-gradient"}(${
+    return `${isLinear ? 'linear-gradient' : 'radial-gradient'}(${
         isLinear
             ? isDirectional
                 ? state.gradient.direction
                 : `${state.gradient.angle}deg`
-            : "circle"
+            : 'circle'
     }, ${Object.entries(state.gradientStops)
         .sort(([id1, stop1], [id2, stop2]) => stop1.percent - stop2.percent)
         .map(([id, stop]) => {
@@ -19,5 +19,5 @@ export function stateToGradientCSS(state, forceLinear = false) {
                 stop.color.a
             }) ${stop.percent * 100}%`
         })
-        .join(",")})`
+        .join(',')})`
 }

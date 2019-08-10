@@ -3,8 +3,10 @@ import {
     SET_ACTIVE_GRADIENT_STOP,
     ADD_NEW_GRADIENT_STOP,
     REMOVE_GRADIENT_STOP,
-    CHANGE_GRADIENT_TYPE
-} from "./actionTypes"
+    CHANGE_GRADIENT_TYPE,
+    CHANGE_GRADIENT_DIRECTION,
+    CHANGE_GRADIENT_ANGLE
+} from './actionTypes'
 
 export default function reducer(prevState, action) {
     switch (action.type) {
@@ -63,6 +65,26 @@ export default function reducer(prevState, action) {
                 gradient: {
                     ...prevState.gradient,
                     isLinear: action.payload ? false : true
+                }
+            }
+
+        case CHANGE_GRADIENT_DIRECTION:
+            return {
+                ...prevState,
+                gradient: {
+                    ...prevState.gradient,
+                    direction: action.payload,
+                    activeProp: 'direction'
+                }
+            }
+
+        case CHANGE_GRADIENT_ANGLE:
+            return {
+                ...prevState,
+                gradient: {
+                    ...prevState.gradient,
+                    angle: action.payload,
+                    activeProp: 'angle'
                 }
             }
 

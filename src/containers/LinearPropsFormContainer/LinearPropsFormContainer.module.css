@@ -1,0 +1,19 @@
+.LinearForm {
+    margin: 10px 0px;
+}
+.LinearForm__angle {
+    position: relative;
+    width: 100%;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 2px solid #222;
+}
+
+.LinearForm__direction {
+    width: 100%;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 2px solid #222;
+}

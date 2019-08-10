@@ -9,7 +9,8 @@ const INIT_STATE = {
     gradient: {
         isLinear: true,
         direction: 'to right',
-        angle: null
+        angle: null,
+        activeProp: 'direction'
     },
     gradientStops: {
         [id1]: {

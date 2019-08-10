@@ -3,9 +3,11 @@ import {
     SET_ACTIVE_GRADIENT_STOP,
     UPDATE_GRADIENT_STOP,
     REMOVE_GRADIENT_STOP,
-    CHANGE_GRADIENT_TYPE
-} from "./actionTypes"
-import uuid from "uuid/v4"
+    CHANGE_GRADIENT_TYPE,
+    CHANGE_GRADIENT_DIRECTION,
+    CHANGE_GRADIENT_ANGLE
+} from './actionTypes'
+import uuid from 'uuid/v4'
 
 export function updateGradientStop(id, newValsObj) {
     return {
@@ -43,5 +45,16 @@ export function changeGradientType(type) {
     return {
         type: CHANGE_GRADIENT_TYPE,
         payload: type
+    }
+}
+
+export function changeGradientDirection(direction) {
+    return { type: CHANGE_GRADIENT_DIRECTION, payload: direction }
+}
+
+export function chnageGradientAngle(angle) {
+    return {
+        type: CHANGE_GRADIENT_ANGLE,
+        payload: angle
     }
 }
