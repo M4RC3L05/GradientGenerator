@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import styles from './MessageDisplay.module.css'
 
-let timeout
 function MessageDisplay({ text, show, autoClose, onClose }) {
     const [state, setState] = useState({ show: !!show, isFromOutside: true })
 
     useEffect(() => {
         if (!autoClose) return
 
-        timeout = setTimeout(
-            () => setState(ps => ({ show: false, isFromOutside: false })),
-            5000
-        )
+        const timeout = setTimeout(() => {
+            console.log('from timeout')
+            setState(ps => ({ show: false, isFromOutside: false }))
+        }, 5000)
+
+        return () => {
+            if (timeout) clearTimeout(timeout)
+        }
     }, [])
 
     useEffect(() => {
@@ -30,10 +33,9 @@ function MessageDisplay({ text, show, autoClose, onClose }) {
             <div className={styles['MessageDisplay__text']}>{text}</div>
             <div
                 className={styles['MessageDisplay__dismiss']}
-                onClick={() => {
-                    if (timeout) clearTimeout(timeout)
+                onClick={() =>
                     setState(ps => ({ show: false, isFromOutside: false }))
-                }}
+                }
             >
                 &times;
             </div>
