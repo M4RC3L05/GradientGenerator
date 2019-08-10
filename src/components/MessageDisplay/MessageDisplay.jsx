@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './MessageDisplay.module.css'
 
+let timeout
 function MessageDisplay({ text, show, autoClose, onClose }) {
     const [state, setState] = useState({ show: !!show, isFromOutside: true })
-    const timeout = useRef()
+
     useEffect(() => {
         if (!autoClose) return
 
-        timeout.current = setTimeout(
+        timeout = setTimeout(
             () => setState(ps => ({ show: false, isFromOutside: false })),
             5000
         )
@@ -30,7 +31,7 @@ function MessageDisplay({ text, show, autoClose, onClose }) {
             <div
                 className={styles['MessageDisplay__dismiss']}
                 onClick={() => {
-                    if (timeout.current) clearTimeout(timeout.current)
+                    if (timeout) clearTimeout(timeout)
                     setState(ps => ({ show: false, isFromOutside: false }))
                 }}
             >

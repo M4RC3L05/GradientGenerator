@@ -1,4 +1,5 @@
 import React from 'react'
+import CopyToClipboard from 'react-copy-to-clipboard'
 import styles from './GradientGen.module.css'
 import ColorPicker from '../ColorPicker/ColorPicker'
 import Slider from '../../components/Slider/Slider'
@@ -18,15 +19,18 @@ import {
 } from '../../context/GradientContext/actions'
 import Switch from '../../components/Switch/Switch'
 import CSSRuleDisplay from '../../components/CSSRuleDisplay/CSSRuleDisplay'
-import MessageDisplay from '../../components/MessageDisplay/MessageDisplay'
-import MessagesPortal from '../../components/MessagesPortal'
+
 import BgPreview, {
     BGPreviewPortal
 } from '../../components/BgPreview/BgPreview'
+import { useMessagesContextDispatch } from '../../context/MessagesContext/MessagesContext'
+import { addMessage } from '../../context/MessagesContext/actions'
+import MessagesContainer from '../MessagesContainer/MessagesContainer'
 
 function GradientGen() {
     const gradientState = useGradientState()
     const gradientStateDispatch = useGradientActions()
+    const messagesDispatch = useMessagesContextDispatch()
 
     const onAddNewGradientStop = React.useCallback(
         x => gradientStateDispatch(addNewGradientStop(null, x.percent)),
@@ -67,32 +71,7 @@ function GradientGen() {
             <BGPreviewPortal>
                 <BgPreview gradient={`${stateToGradientCSS(gradientState)}`} />
             </BGPreviewPortal>
-            <MessagesPortal>
-                <MessageDisplay
-                    text={'Copied to the clipboard'}
-                    show={true}
-                    autoClose={true}
-                    onClose={() => console.log('closed')}
-                />
-                <MessageDisplay
-                    text={'Copied to the clipboard'}
-                    show={true}
-                    autoClose={false}
-                    onClose={() => console.log('closed')}
-                />
-                <MessageDisplay
-                    text={'Copied to the clipboard'}
-                    show={true}
-                    autoClose={false}
-                    onClose={() => console.log('closed')}
-                />
-                <MessageDisplay
-                    text={'Copied to the clipboard'}
-                    show={true}
-                    autoClose={true}
-                    onClose={() => console.log('closed')}
-                />
-            </MessagesPortal>
+            <MessagesContainer />
             <div className={styles['GradientGen__GradientSlider']}>
                 <Slider
                     cursors={Object.values(gradientState.gradientStops)}
@@ -162,7 +141,14 @@ function GradientGen() {
                     justifyContent: 'center'
                 }}
             >
-                <CSSRuleDisplay rule={stateToGradientCSS(gradientState)} />
+                <CopyToClipboard
+                    text={stateToGradientCSS(gradientState)}
+                    onCopy={() =>
+                        messagesDispatch(addMessage('Copied to the clipboad!'))
+                    }
+                >
+                    <CSSRuleDisplay rule={stateToGradientCSS(gradientState)} />
+                </CopyToClipboard>
             </div>
         </div>
     )

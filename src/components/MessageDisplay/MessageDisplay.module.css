@@ -11,6 +11,7 @@
     display: flex;
     align-items: center;
     transform: scale(0) translateY(calc(100% + 10px));
+    opacity: 0;
 }
 
 .MessageDisplay__text {

@@ -1,14 +1,11 @@
 import React from 'react'
-import CopyToClipboard from 'react-copy-to-clipboard'
 
 import styles from './CSSRuleDisplay.module.css'
 
-function CSSRuleDisplay({ rule }) {
+function CSSRuleDisplay({ rule, onClick }) {
     return (
-        <div className={styles['CSSRuleDisplay']}>
-            <CopyToClipboard text={rule} onCopy={() => console.log('copied')}>
-                <div className={styles['CSSRuleDisplay__rule']}>{rule}</div>
-            </CopyToClipboard>
+        <div className={styles['CSSRuleDisplay']} onClick={onClick}>
+            <div className={styles['CSSRuleDisplay__rule']}>{rule}</div>
         </div>
     )
 }

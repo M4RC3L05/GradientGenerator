@@ -6,6 +6,7 @@ import GradientGen from './containers/GradientGen/GradientGen'
 import GradientProvider from './context/GradientContext/GradientContext'
 
 import * as sw from './serviceWorker'
+import { MessagesProvider } from './context/MessagesContext/MessagesContext'
 
 function App() {
     return <GradientGen />
@@ -14,7 +15,9 @@ function App() {
 const rootElement = document.getElementById('root')
 ReactDOM.render(
     <GradientProvider>
-        <App />
+        <MessagesProvider>
+            <App />
+        </MessagesProvider>
     </GradientProvider>,
     rootElement
 )
