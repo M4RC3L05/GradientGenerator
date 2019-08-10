@@ -17,9 +17,7 @@ function LinearPropsFormContainer({ dispatch, direction, angle }) {
                 id="gradient-direction"
                 value={direction || 'to right'}
             >
-                <option value="to right" selected>
-                    to right
-                </option>
+                <option value="to right">to right</option>
                 <option value="to bottom">to bottom</option>
                 <option value="to left">to left</option>
                 <option value="to top">to top</option>
