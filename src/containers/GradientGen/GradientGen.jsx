@@ -18,6 +18,11 @@ import {
 } from '../../context/GradientContext/actions'
 import Switch from '../../components/Switch/Switch'
 import CSSRuleDisplay from '../../components/CSSRuleDisplay/CSSRuleDisplay'
+import MessageDisplay from '../../components/MessageDisplay/MessageDisplay'
+import MessagesPortal from '../../components/MessagesPortal'
+import BgPreview, {
+    BGPreviewPortal
+} from '../../components/BgPreview/BgPreview'
 
 function GradientGen() {
     const gradientState = useGradientState()
@@ -59,6 +64,35 @@ function GradientGen() {
 
     return (
         <div className={styles['GradientGen']}>
+            <BGPreviewPortal>
+                <BgPreview gradient={`${stateToGradientCSS(gradientState)}`} />
+            </BGPreviewPortal>
+            <MessagesPortal>
+                <MessageDisplay
+                    text={'Copied to the clipboard'}
+                    show={true}
+                    autoClose={true}
+                    onClose={() => console.log('closed')}
+                />
+                <MessageDisplay
+                    text={'Copied to the clipboard'}
+                    show={true}
+                    autoClose={false}
+                    onClose={() => console.log('closed')}
+                />
+                <MessageDisplay
+                    text={'Copied to the clipboard'}
+                    show={true}
+                    autoClose={false}
+                    onClose={() => console.log('closed')}
+                />
+                <MessageDisplay
+                    text={'Copied to the clipboard'}
+                    show={true}
+                    autoClose={true}
+                    onClose={() => console.log('closed')}
+                />
+            </MessagesPortal>
             <div className={styles['GradientGen__GradientSlider']}>
                 <Slider
                     cursors={Object.values(gradientState.gradientStops)}
@@ -72,7 +106,11 @@ function GradientGen() {
                         cursor: Object.values(
                             gradientState.gradientStops
                         ).reduce((acc, curr) => {
-                            const rgb = hsvToRgb(curr.color)
+                            const rgb = hsvToRgb(
+                                curr.color.h,
+                                curr.color.s,
+                                curr.color.v
+                            )
 
                             return {
                                 ...acc,
