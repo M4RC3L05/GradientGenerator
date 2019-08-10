@@ -1,0 +1,7 @@
+.GradientProps__title {
+    display: flex;
+}
+
+.GradientProps__title > * {
+    margin: 0px 10px;
+}

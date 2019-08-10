@@ -24,7 +24,7 @@ export function useMessagesContextDispatch() {
     return ctx
 }
 
-export function MessagesProvider(props) {
+export default function MessagesProvider(props) {
     const [state, dispatch] = React.useReducer(reducer, {})
 
     return (
