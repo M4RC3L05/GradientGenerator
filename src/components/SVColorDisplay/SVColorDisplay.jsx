@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
-import styles from './SVColorDisplay.module.css'
-import { hsvToRgb } from '../../utils/colors'
-import overlay from './sv_overlay.png'
+import React, { useState, useEffect, useRef } from "react"
+import styles from "./SVColorDisplay.module.css"
+import { hsvToRgb } from "../../utils/colors"
+import overlay from "./sv_overlay.png"
 
 function SVColorDisplay({ color, onSVChange }) {
     const [state, setState] = useState({
@@ -14,11 +14,18 @@ function SVColorDisplay({ color, onSVChange }) {
 
     useEffect(() => {
         function onMouseMove(e) {
+            e.preventDefault()
             if (!state.canMove) return
 
             const rect = displayRef.current.getBoundingClientRect()
-            let x = e.clientX - rect.left
-            let y = e.clientY - rect.top
+            let x =
+                e instanceof TouchEvent
+                    ? e.changedTouches[0].clientX - rect.left
+                    : e.clientX - rect.left
+            let y =
+                e instanceof TouchEvent
+                    ? e.changedTouches[0].clientY - rect.top
+                    : e.clientY - rect.top
             if (x >= rect.width) x = rect.width
             if (x < 0) x = 0
             if (y < 0) y = 0
@@ -40,12 +47,18 @@ function SVColorDisplay({ color, onSVChange }) {
             setState(ps => ({ ...ps, canMove: false }))
         }
 
-        window.addEventListener('mousemove', onMouseMove)
-        window.addEventListener('mouseup', onMouseUp)
+        window.addEventListener("mousemove", onMouseMove)
+        window.addEventListener("touchmove", onMouseMove, { passive: false })
+        window.addEventListener("mouseup", onMouseUp)
+        window.addEventListener("touchend", onMouseUp)
 
         return () => {
-            window.removeEventListener('mousemove', onMouseMove)
-            window.removeEventListener('mouseup', onMouseUp)
+            window.removeEventListener("mousemove", onMouseMove)
+            window.removeEventListener("touchmove", onMouseMove, {
+                passive: false
+            })
+            window.removeEventListener("mouseup", onMouseUp)
+            window.removeEventListener("touchend", onMouseUp)
         }
     })
 
@@ -65,19 +78,20 @@ function SVColorDisplay({ color, onSVChange }) {
     const rgb2 = hsvToRgb(color.h, state.cursorValues.s, state.cursorValues.v)
 
     return (
-        <div className={styles['SVColorDisplay__wrapper']}>
+        <div className={styles["SVColorDisplay__wrapper"]}>
             <div
-                className={styles['SVColorDisplay__sb-display']}
+                className={styles["SVColorDisplay__sb-display"]}
                 style={{ background: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})` }}
             />
             <div
-                className={styles['SVColorDisplay__sb-display__overlay']}
+                className={styles["SVColorDisplay__sb-display__overlay"]}
                 style={{ backgroundImage: `url(${overlay})` }}
                 ref={displayRef}
             />
             <div
-                className={styles['SVColorDisplay__cursor']}
+                className={styles["SVColorDisplay__cursor"]}
                 onMouseDown={() => setState(ps => ({ ...ps, canMove: true }))}
+                onTouchStart={() => setState(ps => ({ ...ps, canMove: true }))}
                 style={{
                     background: `rgba(${rgb2.r}, ${rgb2.g}, ${rgb2.b}, ${
                         color.a

@@ -1,6 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from "react"
 
-import styles from './Slider.module.css'
+import styles from "./Slider.module.css"
+
+let __MYLASTTAP = 0
 
 function Slider({
     cursors = [],
@@ -23,10 +25,14 @@ function Slider({
 
     useEffect(() => {
         function onMouseMove(e) {
+            e.preventDefault()
             if (!state.canSlide || !state.activeIndicator) return
 
             const rect = sliderRef.current.getBoundingClientRect()
-            let x = e.clientX - rect.left
+            let x =
+                e instanceof TouchEvent
+                    ? e.changedTouches[0].clientX - rect.left
+                    : e.clientX - rect.left
             if (x >= rect.width) x = rect.width
             if (x < 0) x = 0
 
@@ -50,12 +56,18 @@ function Slider({
             setState(ps => ({ ...ps, canSlide: false, activeIndicator: null }))
         }
 
-        window.addEventListener('mousemove', onMouseMove)
-        window.addEventListener('mouseup', onMouseUp)
+        window.addEventListener("mousemove", onMouseMove)
+        window.addEventListener("touchmove", onMouseMove, { passive: false })
+        window.addEventListener("mouseup", onMouseUp)
+        window.addEventListener("touchend", onMouseUp)
 
         return () => {
-            window.removeEventListener('mousemove', onMouseMove)
-            window.removeEventListener('mouseup', onMouseUp)
+            window.removeEventListener("mousemove", onMouseMove)
+            window.removeEventListener("touchmove", onMouseMove, {
+                passive: false
+            })
+            window.removeEventListener("mouseup", onMouseUp)
+            window.removeEventListener("touchend", onMouseUp)
         }
     })
 
@@ -82,11 +94,24 @@ function Slider({
     ])
 
     return (
-        <div className={styles['Slider__wrapper']}>
+        <div className={styles["Slider__wrapper"]}>
             <div
-                className={styles['Slider__slider']}
+                className={styles["Slider__slider"]}
                 ref={sliderRef}
                 style={css.slider || {}}
+                onTouchStart={e => {
+                    const now = new Date().getTime()
+                    const timesince = now - __MYLASTTAP
+                    if (timesince < 600 && timesince > 0) {
+                        const rect = sliderRef.current.getBoundingClientRect()
+                        const x = e.touches[0].clientX - rect.left
+                        onDoubleClick({ x, percent: x / rect.width })
+                    } else {
+                        console.log("no double")
+                    }
+
+                    __MYLASTTAP = new Date().getTime()
+                }}
                 onDoubleClick={e => {
                     const rect = sliderRef.current.getBoundingClientRect()
                     const x = e.clientX - rect.left
@@ -96,10 +121,18 @@ function Slider({
             {Object.entries(state.cursors).map(([id, cursor]) => (
                 <div
                     key={id}
-                    className={`${styles['Slider__slider__cursor']} 
+                    className={`${styles["Slider__slider__cursor"]}
                     ${state.activeIndicator === id &&
-                        styles['Slider__slider__cursor--active']}`}
+                        styles["Slider__slider__cursor--active"]}`}
                     onMouseDown={() => {
+                        setState(ps => ({
+                            ...ps,
+                            canSlide: true,
+                            activeIndicator: id
+                        }))
+                        if (onCursor) onCursor(state.cursors[id])
+                    }}
+                    onTouchStart={() => {
                         setState(ps => ({
                             ...ps,
                             canSlide: true,
