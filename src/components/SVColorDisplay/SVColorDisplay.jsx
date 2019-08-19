@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useRef } from "react"
 import styles from "./SVColorDisplay.module.css"
 import { hsvToRgb } from "../../utils/colors"
-import overlay from "./sv_overlay.png"
 
 function SVColorDisplay({ color, onSVChange }) {
     const [state, setState] = useState({
         cursorValues: { s: color.s, v: color.v },
         canMove: false,
-        isFromOutside: false
+        isFromOutside: false,
+        preventDefault: false
     })
 
     const displayRef = useRef()
 
     useEffect(() => {
         function onMouseMove(e) {
-            e.preventDefault()
+            if (state.preventDefault) e.preventDefault()
             if (!state.canMove) return
 
             const rect = displayRef.current.getBoundingClientRect()
@@ -44,7 +44,7 @@ function SVColorDisplay({ color, onSVChange }) {
         }
 
         function onMouseUp() {
-            setState(ps => ({ ...ps, canMove: false }))
+            setState(ps => ({ ...ps, canMove: false, preventDefault: false }))
         }
 
         window.addEventListener("mousemove", onMouseMove)
@@ -82,16 +82,26 @@ function SVColorDisplay({ color, onSVChange }) {
             <div
                 className={styles["SVColorDisplay__sb-display"]}
                 style={{ background: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})` }}
-            />
-            <div
-                className={styles["SVColorDisplay__sb-display__overlay"]}
-                style={{ backgroundImage: `url(${overlay})` }}
                 ref={displayRef}
             />
+            <div className={styles["SVColorDisplay__sb-display__overlay"]} />
+            <div className={styles["SVColorDisplay__sb-display__overlay2"]} />
             <div
                 className={styles["SVColorDisplay__cursor"]}
-                onMouseDown={() => setState(ps => ({ ...ps, canMove: true }))}
-                onTouchStart={() => setState(ps => ({ ...ps, canMove: true }))}
+                onMouseDown={() =>
+                    setState(ps => ({
+                        ...ps,
+                        canMove: true,
+                        preventDefault: true
+                    }))
+                }
+                onTouchStart={() =>
+                    setState(ps => ({
+                        ...ps,
+                        canMove: true,
+                        preventDefault: true
+                    }))
+                }
                 style={{
                     background: `rgba(${rgb2.r}, ${rgb2.g}, ${rgb2.b}, ${
                         color.a

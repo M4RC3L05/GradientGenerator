@@ -8,7 +8,7 @@ html {
 }
 
 body {
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
 }
 
 html,
@@ -35,4 +35,16 @@ body,
     bottom: 0;
     flex-direction: column;
     overflow: hidden;
+}
+
+@media only screen and (max-width: 800px) {
+    html,
+    body,
+    #root {
+        width: 100%;
+        height: auto;
+        margin: 0px;
+        padding: 0px;
+        overflow: auto;
+    }
 }

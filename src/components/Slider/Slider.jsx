@@ -18,14 +18,15 @@ function Slider({
             (acc, curr) => ({ ...acc, [curr.id]: curr }),
             {}
         ),
-        activeIndicator: null
+        activeIndicator: null,
+        preventDefault: false
     })
 
     const sliderRef = useRef()
 
     useEffect(() => {
         function onMouseMove(e) {
-            e.preventDefault()
+            if (state.preventDefault) e.preventDefault()
             if (!state.canSlide || !state.activeIndicator) return
 
             const rect = sliderRef.current.getBoundingClientRect()
@@ -53,7 +54,12 @@ function Slider({
         }
 
         function onMouseUp() {
-            setState(ps => ({ ...ps, canSlide: false, activeIndicator: null }))
+            setState(ps => ({
+                ...ps,
+                canSlide: false,
+                activeIndicator: null,
+                preventDefault: false
+            }))
         }
 
         window.addEventListener("mousemove", onMouseMove)
@@ -128,7 +134,8 @@ function Slider({
                         setState(ps => ({
                             ...ps,
                             canSlide: true,
-                            activeIndicator: id
+                            activeIndicator: id,
+                            preventDefault: true
                         }))
                         if (onCursor) onCursor(state.cursors[id])
                     }}
@@ -136,7 +143,8 @@ function Slider({
                         setState(ps => ({
                             ...ps,
                             canSlide: true,
-                            activeIndicator: id
+                            activeIndicator: id,
+                            preventDefault: true
                         }))
                         if (onCursor) onCursor(state.cursors[id])
                     }}

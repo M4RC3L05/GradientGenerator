@@ -10,3 +10,9 @@
 .ColorPicker__controls > div:nth-child(n) {
     margin-bottom: 10px;
 }
+
+@media only screen and (max-width: 800px) {
+    .ColorPicker__wrapper {
+        width: 100%;
+    }
+}

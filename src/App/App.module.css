@@ -23,3 +23,36 @@
 .GradientGen__others > * {
     margin: 0px 10px;
 }
+
+@media only screen and (max-width: 800px) {
+    .GradientGen {
+        max-width: 100%;
+        margin: 10px;
+        height: auto;
+    }
+
+    .GradientGen__others {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .GradientGen__others > * {
+        margin: 10px;
+    }
+
+    .GradientGen__others > div:nth-child(3) {
+        order: 2;
+        width: 100%;
+    }
+
+    .GradientGen__others > div:nth-child(1) {
+        order: 1;
+        width: 100%;
+    }
+
+    .GradientGen__others > div:nth-child(2) {
+        order: 3;
+        width: 100%;
+    }
+}
