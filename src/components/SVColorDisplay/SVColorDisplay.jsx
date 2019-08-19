@@ -18,14 +18,32 @@ function SVColorDisplay({ color, onSVChange }) {
             if (!state.canMove) return
 
             const rect = displayRef.current.getBoundingClientRect()
-            let x =
-                e instanceof TouchEvent
-                    ? e.changedTouches[0].clientX - rect.left
-                    : e.clientX - rect.left
-            let y =
-                e instanceof TouchEvent
-                    ? e.changedTouches[0].clientY - rect.top
-                    : e.clientY - rect.top
+            let x = e.clientX - rect.left
+            let y = e.clientY - rect.top
+            if (x >= rect.width) x = rect.width
+            if (x < 0) x = 0
+            if (y < 0) y = 0
+            if (y >= rect.height) y = rect.height
+
+            const s = x / rect.width
+            const v = 1 - y / rect.height
+
+            if (s === state.cursorValues.s && v === state.cursorValues.v) return
+
+            setState(ps => ({
+                ...ps,
+                cursorValues: { s, v },
+                isFromOutside: false
+            }))
+        }
+
+        function onMouseMoveMobile(e) {
+            if (state.preventDefault) e.preventDefault()
+            if (!state.canMove) return
+
+            const rect = displayRef.current.getBoundingClientRect()
+            let x = e.changedTouches[0].clientX - rect.left
+            let y = e.changedTouches[0].clientY - rect.top
             if (x >= rect.width) x = rect.width
             if (x < 0) x = 0
             if (y < 0) y = 0
@@ -48,13 +66,15 @@ function SVColorDisplay({ color, onSVChange }) {
         }
 
         window.addEventListener("mousemove", onMouseMove)
-        window.addEventListener("touchmove", onMouseMove, { passive: false })
+        window.addEventListener("touchmove", onMouseMoveMobile, {
+            passive: false
+        })
         window.addEventListener("mouseup", onMouseUp)
         window.addEventListener("touchend", onMouseUp)
 
         return () => {
             window.removeEventListener("mousemove", onMouseMove)
-            window.removeEventListener("touchmove", onMouseMove, {
+            window.removeEventListener("touchmove", onMouseMoveMobile, {
                 passive: false
             })
             window.removeEventListener("mouseup", onMouseUp)

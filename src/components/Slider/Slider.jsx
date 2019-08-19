@@ -30,10 +30,32 @@ function Slider({
             if (!state.canSlide || !state.activeIndicator) return
 
             const rect = sliderRef.current.getBoundingClientRect()
-            let x =
-                e instanceof TouchEvent
-                    ? e.changedTouches[0].clientX - rect.left
-                    : e.clientX - rect.left
+            let x = e.clientX - rect.left
+            if (x >= rect.width) x = rect.width
+            if (x < 0) x = 0
+
+            if (state.cursors[state.activeIndicator].percent === x / rect.width)
+                return
+
+            setState(ps => ({
+                ...ps,
+                cursors: {
+                    ...ps.cursors,
+                    [ps.activeIndicator]: {
+                        ...ps.cursors[ps.activeIndicator],
+                        percent: x / rect.width
+                    }
+                },
+                isFromOutside: false
+            }))
+        }
+
+        function onMouseMoveMobile(e) {
+            if (state.preventDefault) e.preventDefault()
+            if (!state.canSlide || !state.activeIndicator) return
+
+            const rect = sliderRef.current.getBoundingClientRect()
+            let x = e.changedTouches[0].clientX - rect.left
             if (x >= rect.width) x = rect.width
             if (x < 0) x = 0
 
@@ -63,13 +85,15 @@ function Slider({
         }
 
         window.addEventListener("mousemove", onMouseMove)
-        window.addEventListener("touchmove", onMouseMove, { passive: false })
+        window.addEventListener("touchmove", onMouseMoveMobile, {
+            passive: false
+        })
         window.addEventListener("mouseup", onMouseUp)
         window.addEventListener("touchend", onMouseUp)
 
         return () => {
             window.removeEventListener("mousemove", onMouseMove)
-            window.removeEventListener("touchmove", onMouseMove, {
+            window.removeEventListener("touchmove", onMouseMoveMobile, {
                 passive: false
             })
             window.removeEventListener("mouseup", onMouseUp)
